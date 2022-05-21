@@ -2,6 +2,12 @@
 import React from "react";
 import { useRouter } from "next/router";
 import styles from "./header.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faComputer,
+  faCodeCommit,
+  faMoneyBill,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -11,9 +17,16 @@ const Header: React.FC = () => {
         <img src="/images/logo.png" alt="logo" />
       </div>
       <nav className={styles.navbar}>
-        <button onClick={() => router.push("/a")}>Reservar un equipo</button>
-        <button onClick={() => router.push("/a")}>Revisar solicitudes</button>
-        <button onClick={() => router.push("/a")}>
+        <button onClick={() => router.push("/")}>
+          <FontAwesomeIcon icon={faComputer} />
+          Reservar un equipo
+        </button>
+        <button onClick={() => router.push("/requests")}>
+          <FontAwesomeIcon icon={faCodeCommit} />
+          Revisar solicitudes
+        </button>
+        <button onClick={() => router.push("/buy")}>
+          <FontAwesomeIcon icon={faMoneyBill} />
           Comprar una subscripción
         </button>
       </nav>
