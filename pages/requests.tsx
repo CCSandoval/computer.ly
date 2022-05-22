@@ -3,14 +3,15 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/layout";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import AuthForm from "../src/components/auth-form/auth-form";
 
 const Home: NextPage = () => {
-  useEffect(() => {
-    axios
-      .get("/api/requests")
-      .then((res: AxiosResponse) => console.log(res.data))
-      .catch((err: AxiosError) => console.log(err.message));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/requests")
+  //     .then((res: AxiosResponse) => console.log(res.data))
+  //     .catch((err: AxiosError) => console.log(err.message));
+  // }, []);
   return (
     <div>
       <Head>
@@ -19,7 +20,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <div></div>
+        <div>
+          <AuthForm />
+        </div>
       </Layout>
     </div>
   );

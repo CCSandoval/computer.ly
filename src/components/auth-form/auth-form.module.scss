@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  gap: 20px;
+  align-items: center;
+  & > label > input {
+    border-radius: 5px;
+    height: 2rem;
+    border: 1px solid #d5d5d5;
+    padding: 5px;
+    outline: 0;
+    background-color: #f9f9f9;
+    &:focus {
+      border-color: black;
+      transform: scale(1.03);
+    }
+  }
+  & > label > h2 {
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    color: #44355b;
+    margin-bottom: 0.5rem;
+    gap: 10px;
+    & > * {
+      height: 1.5rem;
+    }
+  }
+  & > label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 50%;
+  }
+  & > button {
+    width: 25%;
+    background-color: #44355b;
+    border: 1px solid #d5d5d5;
+    color: white;
+    font-size: 1.2rem;
+    transition: 200ms linear;
+  }
+}
