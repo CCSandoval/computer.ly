@@ -8,4 +8,12 @@ export interface RequestData {
   senaCenter: string;
   date: string;
   formation?: string;
+  status?: string;
+}
+
+export interface UserData {
+  email: string;
+  name: string;
+  role: string;
+  password: string;
 }

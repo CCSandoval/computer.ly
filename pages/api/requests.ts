@@ -1,8 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { RequestData } from "../../src/interfaces";
 import clientPromise from "../../lib/mongo";
+import { CreateUser, SearchUser } from "../../lib/functions/users";
+
+interface ExtendedNextApiRequest extends NextApiRequest {
+  body: RequestData;
+}
 
 export default async function handler(
-  req: NextApiRequest,
+  req: ExtendedNextApiRequest,
   res: NextApiResponse
 ) {
   const client = await clientPromise;
@@ -13,23 +19,32 @@ export default async function handler(
       .find({})
       .toArray()
       .then((result) => {
-        console.log(result);
         res.status(200).json(result);
       })
       .catch((err) => {
-        res.status(500).json({ error: err });
+        res
+          .status(500)
+          .json({ message: "Error finding the requests", error: err });
       });
   } else if ((req.method = "POST")) {
-    console.log(req.body);
+    const user = await SearchUser(req.body.email);
+    if (!user) {
+      await CreateUser({
+        email: req.body.email,
+        password: req.body.identification,
+        name: req.body.name,
+        role: "user",
+      }).catch((err) =>
+        res.status(500).json({ message: "Error creating user", err: err })
+      );
+    }
     await collection
-      .insertOne(req.body)
+      .insertOne({ ...req.body, status: "pending" })
       .then((result) => {
-        console.log(result);
         res.status(200).json(result);
       })
       .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
+        res.status(500).json({ message: "Error creating request", err: err });
       });
   }
 }

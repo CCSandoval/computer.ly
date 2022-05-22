@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
-import { RequestData } from "../../interfaces";
 import styles from "./request-form.module.scss";
 
 const RequestForm = () => {
