@@ -7,6 +7,7 @@ import {
   faComputer,
   faCodeCommit,
   faMoneyBill,
+  faDatabase,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header: React.FC = () => {
@@ -24,6 +25,10 @@ const Header: React.FC = () => {
         <button onClick={() => router.push("/requests")}>
           <FontAwesomeIcon icon={faCodeCommit} />
           Revisar solicitudes
+        </button>
+        <button onClick={() => router.push("/computers/")}>
+          <FontAwesomeIcon icon={faDatabase} />
+          Administrar equipos
         </button>
         <button onClick={() => router.push("/buy")}>
           <FontAwesomeIcon icon={faMoneyBill} />

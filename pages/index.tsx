@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/layout";
+import RequestForm from "../src/components/request-form/request-form";
 
 const Home: NextPage = () => {
   return (
@@ -11,7 +12,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <p></p>
+        <div>
+          <h2 style={{ textAlign: "center" }}>
+            Ingresa tu información y nos comunicaremos contigo
+          </h2>
+          <RequestForm />
+        </div>
       </Layout>
     </div>
   );

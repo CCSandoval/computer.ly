@@ -1,0 +1,43 @@
+.form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  gap: 20px;
+  & > label > input,
+  textarea {
+    border-radius: 5px;
+    height: 2rem;
+    border: 1px solid #d5d5d5;
+    padding: 5px;
+    outline: 0;
+    background-color: #f9f9f9;
+    &:focus {
+      border-color: black;
+      transform: scale(1.03);
+    }
+  }
+  & > label > textarea {
+    height: 4rem;
+    resize: none;
+  }
+  & > label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  & > button {
+    &:last-of-type {
+      background-color: #44355b;
+      border: 1px solid #d5d5d5;
+      color: white;
+    }
+    background-color: #d5d5d5;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: 200ms linear;
+  }
+}
