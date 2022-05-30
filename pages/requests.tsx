@@ -20,7 +20,11 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <div>
-          {adminAuth ? <RequestsList /> : <AuthForm setAuth={setAdminAuth} />}
+          {adminAuth ? (
+            <RequestsList setAuth={setAdminAuth} />
+          ) : (
+            <AuthForm setAuth={setAdminAuth} />
+          )}
         </div>
       </Layout>
     </div>

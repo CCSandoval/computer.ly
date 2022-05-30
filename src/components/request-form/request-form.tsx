@@ -1,18 +1,28 @@
+import { faRotate } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import styles from "./request-form.module.scss";
 
 const RequestForm = () => {
+  const [loading, setLoading] = useState(false);
   const { register, handleSubmit, formState } = useForm({ mode: "onChange" });
   const { isValid } = formState;
   const onSubmit = async (data, ev) => {
+    setLoading(true);
     ev.preventDefault();
-    console.log(data);
     await axios
       .post("/api/requests", data)
-      .then((res) => console.log(res))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        toast.success("Petición envíada con éxito");
+        setLoading(false);
+      })
+      .catch((err) => {
+        toast.error("Ocurrió un error envíando la petición");
+        setLoading(false);
+      });
   };
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -58,7 +68,15 @@ const RequestForm = () => {
       <button type="reset">Limpiar</button>
       <span></span>
       <button disabled={!isValid} type="submit">
-        Enviar
+        {loading ? (
+          <FontAwesomeIcon
+            style={{ width: "1rem" }}
+            className="spin"
+            icon={faRotate}
+          />
+        ) : (
+          "Enviar"
+        )}
       </button>
     </form>
   );

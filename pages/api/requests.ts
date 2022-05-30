@@ -32,7 +32,7 @@ export default async function handler(
     if (!user) {
       const salt = await bcrypt.genSalt(10);
       const hashedId = await bcrypt.hash(req.body.identification, salt);
-      console.log("está acá")
+      console.log("está acá");
       await CreateUser({
         email: req.body.email,
         password: hashedId,
