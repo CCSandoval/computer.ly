@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/layout";
 import AuthForm from "../src/components/auth-form/auth-form";
-import RequestsList from "../src/components/requests-list/requests-list";
+import RequestsList from "../src/components/requests/requests-list";
 
 const Home: NextPage = () => {
   const [adminAuth, setAdminAuth] = useState(false);

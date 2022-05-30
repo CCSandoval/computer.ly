@@ -18,7 +18,7 @@ const AuthForm = ({ setAuth }: { setAuth: Function }) => {
       .then((res) => {
         console.log(res);
         if (res.data.role == "admin") {
-          // localStorage.setItem("userData", JSON.stringify(res));
+          localStorage.setItem("userData", JSON.stringify(res));
           setAuth(true);
           Swal.fire("Autenticado", "", "success");
         } else {

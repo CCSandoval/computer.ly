@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { RequestData } from "../../interfaces";
+import RequestCard from "./request-card";
+import styles from "./requests.module.scss";
 
 const RequestsList = () => {
   const [list, setList] = useState<Array<RequestData>>([]);
@@ -11,12 +13,9 @@ const RequestsList = () => {
       .catch((err: AxiosError) => console.log(err.message));
   }, []);
   return (
-    <div>
+    <div className={styles.wrapper}>
       {list.map((req) => (
-        <div key={req._id}>
-          {req.name}
-          {req.age}
-        </div>
+        <RequestCard key={req._id} data={req} />
       ))}
     </div>
   );

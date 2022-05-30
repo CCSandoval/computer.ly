@@ -1,0 +1,66 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: auto;
+  margin-top: 30px;
+  align-items: center;
+  gap: 30px;
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #e9f1f7;
+  border-radius: 20px;
+  padding: 20px;
+  border: 2px dashed #44355b;
+  position: relative;
+}
+
+.cardSection {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+  padding: 10px;
+  border-radius: 15px;
+  width: 25%;
+  background-color: #44355b;
+  box-shadow: 0px 1px 3px 3px rgba(0, 0, 0, 0.5);
+  & > * {
+    margin: 0;
+  }
+  & > h2 {
+    text-align: center;
+  }
+  & > p {
+    display: flex;
+    gap: 7px;
+  }
+  & > p > span > a {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+
+.actionsWrapper {
+  height: fit-content;
+  display: flex;
+  width: 25%;
+  justify-content: space-around;
+  & > * {
+    width: 64px;
+    cursor: pointer;
+    & > p {
+      margin: 0;
+      text-align: center;
+    }
+    &:hover {
+      transition: 100ms linear;
+      transform: scale(1.05) rotate(5deg);
+    }
+  }
+}
