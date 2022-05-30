@@ -9,8 +9,8 @@ import Swal from "sweetalert2";
 const AuthForm = () => {
   const { handleSubmit, formState, register } = useForm({ mode: "onChange" });
   const { isValid } = formState;
-  const onSubmit = async (data, event) => {
-    console.log(data);
+  const onSubmit = async (data: any, event: any) => {
+    event.preventDefault();
     await axios
       .post("/api/validateUser", data)
       .then((res) => Swal.fire("Autenticado", "", "success"))

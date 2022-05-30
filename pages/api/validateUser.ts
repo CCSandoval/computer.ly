@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import clientPromise from "../../lib/mongo";
+import bcrypt from "bcrypt";
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,7 +14,9 @@ export default async function handler(
 
   const user = await collection.findOne({ email: req.body.email });
   if (user) {
-    if (user.password == req.body.password) res.status(200).json(user);
+    // if (user.password == req.body.password) res.status(200).json(user);
+    if (await bcrypt.compare(req.body.password, user.password))
+      res.status(200).json(user);
     else res.status(401).json({ error: "Wrong password" });
   } else res.status(404).json({ error: "User not found" });
 }
