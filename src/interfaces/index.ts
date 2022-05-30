@@ -1,4 +1,5 @@
 export interface RequestData {
+  _id?: string;
   name: string;
   identification: string;
   message: string;

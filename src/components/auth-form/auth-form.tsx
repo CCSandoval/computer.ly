@@ -6,14 +6,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const AuthForm = () => {
-  const { handleSubmit, formState, register } = useForm({ mode: "onChange" });
+const AuthForm = ({ setAuth }: { setAuth: Function }) => {
+  const { handleSubmit, reset, formState, register } = useForm({
+    mode: "onChange",
+  });
   const { isValid } = formState;
   const onSubmit = async (data: any, event: any) => {
     event.preventDefault();
     await axios
       .post("/api/validateUser", data)
-      .then((res) => Swal.fire("Autenticado", "", "success"))
+      .then((res) => {
+        console.log(res);
+        if (res.data.role == "admin") {
+          // localStorage.setItem("userData", JSON.stringify(res));
+          setAuth(true);
+          Swal.fire("Autenticado", "", "success");
+        } else {
+          Swal.fire("No tienes acceso a esta sección", "", "error");
+          reset();
+        }
+      })
       .catch((err) => {
         if (err.response.status == 401)
           Swal.fire("Contraseña incorrecta", "", "error");

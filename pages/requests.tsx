@@ -1,17 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../src/components/layout";
-import axios, { AxiosError, AxiosResponse } from "axios";
 import AuthForm from "../src/components/auth-form/auth-form";
+import RequestsList from "../src/components/requests-list/requests-list";
 
 const Home: NextPage = () => {
-  // useEffect(() => {
-  //   axios
-  //     .get("/api/requests")
-  //     .then((res: AxiosResponse) => console.log(res.data))
-  //     .catch((err: AxiosError) => console.log(err.message));
-  // }, []);
+  const [adminAuth, setAdminAuth] = useState(false);
+  useEffect(() => {
+    const userData = localStorage.getItem("userData");
+    if (userData) setAdminAuth(true);
+  }, []);
   return (
     <div>
       <Head>
@@ -21,7 +20,7 @@ const Home: NextPage = () => {
       </Head>
       <Layout>
         <div>
-          <AuthForm />
+          {adminAuth ? <RequestsList /> : <AuthForm setAuth={setAdminAuth} />}
         </div>
       </Layout>
     </div>
