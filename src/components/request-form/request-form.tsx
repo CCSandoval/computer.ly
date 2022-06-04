@@ -12,7 +12,7 @@ const RequestForm = () => {
     mode: "onChange",
   });
   const { isValid } = formState;
-  const onSubmit = async (data, ev) => {
+  const onSubmit = async (data: any, ev: any) => {
     setLoading(true);
     ev.preventDefault();
     await axios
