@@ -5,7 +5,18 @@ import { CreateUser, SearchUser } from "../../lib/functions/users";
 import bcrypt from "bcrypt";
 
 interface ExtendedNextApiRequest extends NextApiRequest {
-  body: RequestData;
+  body: {
+    name: string;
+    identification: string;
+    message: string;
+    email: string;
+    age: number;
+    celNumber: string;
+    senaCenter: string;
+    date: string;
+    formation?: string;
+    status?: string;
+  };
 }
 
 export default async function handler(
