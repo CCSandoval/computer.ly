@@ -5,29 +5,26 @@ import Layout from "../src/components/layout";
 import AuthForm from "../src/components/auth-form/auth-form";
 import RequestsList from "../src/components/requests/requests-list";
 
-const Requests: NextPage = () => {
+const Computers: NextPage = () => {
   const [auth, setAuth] = useState({ authenticated: false, role: "" });
   useEffect(() => {
     const userData = localStorage.getItem("userData");
-    if (userData) {
-      if (JSON.parse(userData).role == "admin")
-        setAuth({ authenticated: true, role: "admin" });
-      else setAuth({ authenticated: true, role: "user" });
-    }
+    if (userData && JSON.parse(userData).role == "admin")
+      setAuth({ authenticated: true, role: "admin" });
   }, []);
   return (
     <div>
       <Head>
-        <title>Computer.ly | Requests</title>
+        <title>Computer.ly | Computers</title>
         <meta name="description" content="Computer.ly" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
         <div>
           {auth.authenticated ? (
-            <RequestsList setAuth={setAuth} />
+            <p>autenticado</p>
           ) : (
-            <AuthForm setAuth={setAuth} />
+            <AuthForm onlyAdmin={true} setAuth={setAuth} />
           )}
         </div>
       </Layout>
@@ -35,4 +32,4 @@ const Requests: NextPage = () => {
   );
 };
 
-export default Requests;
+export default Computers;

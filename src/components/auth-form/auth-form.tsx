@@ -11,7 +11,13 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AuthForm = ({ setAuth }: { setAuth: Function }) => {
+const AuthForm = ({
+  setAuth,
+  onlyAdmin,
+}: {
+  setAuth: Function;
+  onlyAdmin?: boolean;
+}) => {
   const [loading, setLoading] = useState(false);
   const { handleSubmit, reset, formState, register } = useForm({
     mode: "onChange",
@@ -24,14 +30,21 @@ const AuthForm = ({ setAuth }: { setAuth: Function }) => {
       .post("/api/validateUser", data)
       .then((res) => {
         setLoading(false);
-        console.log(res);
-        if (res.data.role == "admin") {
+        if (onlyAdmin) {
+          if (res.data.role == "admin") {
+            localStorage.setItem("userData", JSON.stringify(res.data));
+            toast.success("Autenticado");
+            setAuth({ authenticated: true, role: res.data.role });
+          } else {
+            toast.info("No tienes acceso a esta sección");
+            reset();
+            setAuth({ authenticated: false, role: res.data.role });
+            return;
+          }
+        } else {
           localStorage.setItem("userData", JSON.stringify(res.data));
           toast.success("Autenticado");
-          setAuth(true);
-        } else {
-          toast.info("No tienes acceso a esta sección");
-          reset();
+          setAuth({ authenticated: true, role: res.data.role });
         }
       })
       .catch((err) => {

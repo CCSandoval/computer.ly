@@ -4,7 +4,7 @@ import Layout from "../src/components/layout";
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Home: NextPage = () => {
+const Buy: NextPage = () => {
   return (
     <div>
       <Head>
@@ -32,4 +32,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default Buy;

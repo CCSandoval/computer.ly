@@ -8,7 +8,9 @@ import styles from "./request-form.module.scss";
 
 const RequestForm = () => {
   const [loading, setLoading] = useState(false);
-  const { register, handleSubmit, formState } = useForm({ mode: "onChange" });
+  const { register, handleSubmit, formState, reset } = useForm({
+    mode: "onChange",
+  });
   const { isValid } = formState;
   const onSubmit = async (data, ev) => {
     setLoading(true);
@@ -17,10 +19,12 @@ const RequestForm = () => {
       .post("/api/requests", data)
       .then((res) => {
         toast.success("Petición envíada con éxito");
+        reset();
         setLoading(false);
       })
       .catch((err) => {
         toast.error("Ocurrió un error envíando la petición");
+        reset();
         setLoading(false);
       });
   };
