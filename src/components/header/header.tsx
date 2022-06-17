@@ -20,7 +20,7 @@ const Header: React.FC = () => {
       <nav className={styles.navbar}>
         <button onClick={() => router.push("/")}>
           <FontAwesomeIcon icon={faComputer} />
-          Reservar un equipo
+          Pedir un equipo
         </button>
         <button onClick={() => router.push("/requests")}>
           <FontAwesomeIcon icon={faCodeCommit} />
